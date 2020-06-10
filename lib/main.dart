@@ -12,6 +12,7 @@ class IOSCalculator extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter App',
       home: IosCal(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -27,6 +28,7 @@ class _IosCalState extends State<IosCal> {
       appBar: null,
       backgroundColor: Colors.black,
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Row(
             children: <Widget>[
@@ -42,32 +44,62 @@ class _IosCalState extends State<IosCal> {
           ),
           Row(
             children: <Widget>[
-              button('C', Colors.grey),
-              button('+/-', Colors.grey),
-              button('%', Colors.grey),
-              button('\u00F7', Colors.orange)
+              button('C', Colors.grey, Colors.black),
+              button('+/-', Colors.grey,Colors.black),
+              button('%', Colors.grey,Colors.black),
+              button('\u00F7', Colors.orange,Colors.white)
             ],
           ),
           Row(
             children: <Widget>[
-              button('7', Colors.grey),
-              button('8', Colors.grey),
-              button('9', Colors.grey),
-              button('X', Colors.orange)
+              button('7', Colors.grey.shade900,Colors.white),
+              button('8', Colors.grey.shade900, Colors.white),
+              button('9', Colors.grey.shade900,Colors.white),
+              button('\u00D7', Colors.orange,Colors.white)
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              button('4', Colors.grey.shade900,Colors.white),
+              button('5', Colors.grey.shade900,Colors.white),
+              button('6', Colors.grey.shade900,Colors.white),
+              button('-', Colors.orange,Colors.white)
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              button('1', Colors.grey.shade900,Colors.white),
+              button('2', Colors.grey.shade900,Colors.white),
+              button('3', Colors.grey.shade900,Colors.white),
+              button('+', Colors.orange,Colors.white)
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              button('0', Colors.grey.shade900,Colors.white),
+              button('.', Colors.grey.shade900,Colors.white),
+              button('=', Colors.grey.shade900,Colors.white),
             ],
           )
         ],
       ),
     );
   }
-  Widget button(text, Color color){
+  Widget button(text, Color color, txtColor){
     return Container(
+      padding: EdgeInsets.only(bottom: 10),
       child: RaisedButton(
-        child: Text(text),
+        child: Text(text,
+        style: TextStyle(
+          color: txtColor,
+          fontSize: 20,
+        ),),
         onPressed: (){
 
         },
         color: color,
+        padding: EdgeInsets.all(20),
+        shape: CircleBorder(),
       ),
     );
   }
