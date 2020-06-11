@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
@@ -43,6 +44,7 @@ class _IosCalState extends State<IosCal> {
             ],
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               button('C', Colors.grey, Colors.black),
               button('+/-', Colors.grey,Colors.black),
@@ -51,6 +53,7 @@ class _IosCalState extends State<IosCal> {
             ],
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               button('7', Colors.grey.shade900,Colors.white),
               button('8', Colors.grey.shade900, Colors.white),
@@ -59,6 +62,7 @@ class _IosCalState extends State<IosCal> {
             ],
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               button('4', Colors.grey.shade900,Colors.white),
               button('5', Colors.grey.shade900,Colors.white),
@@ -67,6 +71,7 @@ class _IosCalState extends State<IosCal> {
             ],
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               button('1', Colors.grey.shade900,Colors.white),
               button('2', Colors.grey.shade900,Colors.white),
@@ -75,8 +80,9 @@ class _IosCalState extends State<IosCal> {
             ],
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              button('0', Colors.grey.shade900,Colors.white),
+              buttonZero('0', Colors.grey.shade900,Colors.white),
               button('.', Colors.grey.shade900,Colors.white),
               button('=', Colors.grey.shade900,Colors.white),
             ],
@@ -100,6 +106,23 @@ class _IosCalState extends State<IosCal> {
         color: color,
         padding: EdgeInsets.all(20),
         shape: CircleBorder(),
+      ),
+    );
+  }
+  Widget buttonZero(text, Color color, txtColor){
+    return Container(
+      child: RaisedButton(
+        child: Text(text,
+          style: TextStyle(
+            color: txtColor,
+            fontSize: 20,
+          ),),
+        onPressed: (){
+
+        },
+        color: color,
+        padding: EdgeInsets.only(left: 85, right: 85, top: 20, bottom: 20),
+        shape: StadiumBorder(),
       ),
     );
   }
