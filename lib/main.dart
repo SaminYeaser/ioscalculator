@@ -23,18 +23,27 @@ class IosCal extends StatefulWidget {
 }
 
 class _IosCalState extends State<IosCal> {
+
+  dynamic text = '0';
+  dynamic numOne = 0;
+  dynamic numTwo = 0;
+
+  dynamic result = '';
+  dynamic finalResult = '';
+  dynamic opr = '';
+  dynamic preOpr = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: null,
       backgroundColor: Colors.black,
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           Row(
             children: <Widget>[
               Expanded(
-                child: Text('123',
+                child: Text(text,
                 textAlign: TextAlign.right,
                 style: TextStyle(
                   color: Colors.white,
@@ -101,7 +110,7 @@ class _IosCalState extends State<IosCal> {
           fontSize: 20,
         ),),
         onPressed: (){
-
+          calculation(text);
         },
         color: color,
         padding: EdgeInsets.all(20),
@@ -118,13 +127,94 @@ class _IosCalState extends State<IosCal> {
             fontSize: 20,
           ),),
         onPressed: (){
-
+        calculation(text);
         },
         color: color,
-        padding: EdgeInsets.only(left: 85, right: 85, top: 20, bottom: 20),
+        padding: EdgeInsets.only(left: 90, right: 85, top: 20, bottom: 20),
         shape: StadiumBorder(),
       ),
     );
+  }
+  void calculation(btntxt){
+    if(btntxt == 'C'){
+       text = '0';
+       numOne = 0;
+       numTwo = 0;
+
+       result = '';
+       finalResult = '';
+       opr = '';
+       preOpr = '';
+    }
+
+
+    else if(opr == '=' && preOpr == '='){
+      if(preOpr == '+'){
+        result = (numOne + numTwo).toString();
+        finalResult = result;
+        numOne = double.parse(result);
+      }else if(preOpr == '\u00D7' || preOpr == '*'){
+        result = (numOne * numTwo).toString();
+        finalResult = result;
+        numOne = double.parse(result);
+      }else if(preOpr == '\u00F7' || preOpr == '/'){
+        result = (numOne / numTwo).toString();
+        finalResult = result;
+        numOne = double.parse(result);
+      }else if(preOpr == '-'){
+        result = (numOne - numTwo).toString();
+        finalResult = result;
+        numOne = double.parse(result);
+      }else if(preOpr == '%'){
+        result = {numOne * (numTwo/100)}.toString();
+        finalResult = result;
+        numOne = double.parse(result);
+      }
+    }
+
+
+    else if(btntxt == '+' || btntxt == '-' || btntxt == '/' || btntxt == '*' || btntxt =='\u00F7' || btntxt == '\u00D7' || btntxt == '=' || btntxt == '%'){
+      if(numOne == 0){
+        numOne = double.parse(result);
+      }else{
+        numTwo = double.parse(result);
+      }
+      if(opr == '+'){
+        result = (numOne + numTwo).toString();
+        finalResult = result;
+        numOne = double.parse(result);
+      }
+      else if(opr == '\u00D7' || opr == '*'){
+        result = (numOne * numTwo).toString();
+        finalResult = result;
+        numOne = double.parse(result);
+      }
+      else if(opr == '\u00F7' || opr == '/'){
+        result = (numOne/numTwo).toString();
+        finalResult = result;
+        numOne = double.parse(result);
+      }else if(opr == '-'){
+        result = (numOne - numTwo).toString();
+        finalResult = result;
+        numOne = double.parse(result);
+      }else if(opr == '%'){
+        result = {numOne * (numTwo/100)}.toString();
+        finalResult = result;
+        numOne = double.parse(result);
+      }
+      preOpr = opr;
+      opr = btntxt;
+      result = '';
+    }
+
+    else{
+      result = result + btntxt;
+      finalResult = result;
+    }
+
+    setState(() {
+      text = finalResult;
+    });
   }
 }
 
